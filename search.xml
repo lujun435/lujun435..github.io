@@ -3,6 +3,145 @@
   <entry>
     <title>前端学习笔记</title>
     <url>/2020/05/25/%E8%BF%99%E6%98%AF%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[<h1 id="实际就是"><a href="#实际就是" class="headerlink" title="实际就是"></a>实际就是</h1>]]></content>
+    <content><![CDATA[<h3 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1.	由于js中的小数和整数都是number类型，不存在类似整数除以整数还是整数的结论。</span><br><span class="line">2.	字符串和其他的数据使用+号运算，会连接成一个新的字符串。</span><br><span class="line">3.	字符串使用除了+以外的运算符：如果字符串本身是一个数字，那么会自动转成number进行运算，否则就会返回一个NaN的结果，表示这不是一个数字。NaN：not a number</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script&gt; </span><br><span class="line">    alert(1234 &#x2F; 1000 * 1000); &#x2F;&#x2F; 1234</span><br><span class="line">  </span><br><span class="line">    var s &#x3D; &quot;12&quot;;</span><br><span class="line">     s -&#x3D; 10;</span><br><span class="line">    alert(s);  &#x2F;&#x2F; 2</span><br><span class="line"> </span><br><span class="line">    var s &#x3D; &quot;aa&quot;;</span><br><span class="line">    s -&#x3D; 10;</span><br><span class="line">    alert(s);  &#x2F;&#x2F; NaN       Not a Number 不是一个数字</span><br><span class="line"> </span><br><span class="line">    var s &#x3D; &quot;12&quot;;</span><br><span class="line">    s +&#x3D; 10;</span><br><span class="line">    alert(s);       &#x2F;&#x2F; 1210  </span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function 函数名(形式参数)&#123;函数体&#125;</span><br><span class="line">调用函数：函数名(实际参数);</span><br></pre></td></tr></table></figure>
+
+<h3 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function(形式参数)&#123;函数体&#125;</span><br><span class="line">调用方式：将匿名函数赋值给一个变量，通过变量名调用函数</span><br><span class="line">定义函数并赋值给变量：var fn &#x3D; function(形式参数)&#123;函数体&#125;</span><br><span class="line">调用函数：fn(实际参数);</span><br></pre></td></tr></table></figure>
+
+<h3 id="案例-轮播图"><a href="#案例-轮播图" class="headerlink" title="案例-轮播图"></a>案例-轮播图</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">说明1 : script 标签需要放在 body 标签之后.</span><br><span class="line"> </span><br><span class="line">说明2 : window.setInterval(“字符串函数名称()”, 时间毫秒数);</span><br><span class="line"> </span><br><span class="line">说明3 : window.setInterval(函数名称, 时间毫秒数);</span><br><span class="line"> </span><br><span class="line">说明4 : window.setInterval(匿名函数, 时间毫秒数);            推荐使用</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;轮播图&lt;&#x2F;title&gt;</span><br><span class="line"> </span><br><span class="line">    &lt;style&gt;</span><br><span class="line"> </span><br><span class="line">        div &#123;</span><br><span class="line">            width: 80%;</span><br><span class="line">            margin: 50px auto;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        img &#123;</span><br><span class="line">            width: 100%;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line"> </span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;container&quot;&gt;</span><br><span class="line">        &lt;img src&#x3D;&quot;..&#x2F;img&#x2F;01.jpg&quot; alt&#x3D;&quot;图片&quot;&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br></pre></td></tr></table></figure>
+
+<p>实现一：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"> </span><br><span class="line">    &#x2F;&#x2F; 需求 : 动态获取页面中的 img 标签, 然后修改 img 标签的 src 属性.</span><br><span class="line">    &#x2F;&#x2F; 1. 获取 img 标签</span><br><span class="line">    var img &#x3D; document.getElementById(&quot;img&quot;);</span><br><span class="line">    &#x2F;&#x2F; alert(img);</span><br><span class="line"> </span><br><span class="line">    &#x2F;&#x2F; 定义一个变量</span><br><span class="line">    var count &#x3D; 1;</span><br><span class="line"> </span><br><span class="line">    &#x2F;&#x2F; 1.2 定义一个函数</span><br><span class="line">    function changeImageSrc() &#123;</span><br><span class="line">        count++;</span><br><span class="line">        img.src &#x3D; &quot;..&#x2F;img&#x2F;0&quot;+count+&quot;.jpg&quot;;</span><br><span class="line"> </span><br><span class="line">        &#x2F;&#x2F; 判断</span><br><span class="line">        if (count &#x3D;&#x3D; 8) &#123;</span><br><span class="line">            count &#x3D; 0;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    &#x2F;&#x2F; 2. 循环切换图片</span><br><span class="line">    &#x2F;&#x2F; window.setInterval(函数, 时间毫秒); 在指定的时间毫秒间隔, 不断调用第一个参数传入的函数.</span><br><span class="line">    &#x2F;&#x2F; 调用方式一 :</span><br><span class="line">    &#x2F;&#x2F; window.setInterval(&quot;changeImageSrc()&quot;, 1000);</span><br><span class="line">    &#x2F;&#x2F; 调用方式二 :</span><br><span class="line">    window.setInterval(changeImageSrc, 1000);</span><br><span class="line"> </span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>实现二：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"> </span><br><span class="line">    &#x2F;&#x2F; 需求 : 动态获取页面中的 img 标签, 然后修改 img 标签的 src 属性.</span><br><span class="line">    &#x2F;&#x2F; 1. 获取 img 标签</span><br><span class="line">    var img &#x3D; document.getElementById(&quot;img&quot;);</span><br><span class="line">    &#x2F;&#x2F; alert(img);</span><br><span class="line"> </span><br><span class="line">    &#x2F;&#x2F; 定义一个变量</span><br><span class="line">    var count &#x3D; 1;</span><br><span class="line"> </span><br><span class="line">    &#x2F;&#x2F; 2. 循环切换图片</span><br><span class="line">    &#x2F;&#x2F; window.setInterval(匿名函数, 时间毫秒); 在指定的时间毫秒间隔, 不断调用第一个参数传入的匿名函数.</span><br><span class="line">    window.setInterval(function() &#123;</span><br><span class="line">        count++;</span><br><span class="line">        img.src &#x3D; &quot;..&#x2F;img&#x2F;0&quot;+count+&quot;.jpg&quot;;</span><br><span class="line"> </span><br><span class="line">        &#x2F;&#x2F; 判断</span><br><span class="line">        if (count &#x3D;&#x3D; 8) &#123;</span><br><span class="line">            count &#x3D; 0;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, 1000);</span><br><span class="line"> </span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="数组去重？"><a href="#数组去重？" class="headerlink" title="数组去重？"></a>数组去重？</h3><p>js方法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var arr&#x3D;[&#39;12&#39;,&#39;32&#39;,&#39;89&#39;,&#39;12&#39;,&#39;12&#39;,&#39;78&#39;,&#39;12&#39;,&#39;32&#39;];</span><br><span class="line">    &#x2F;&#x2F; 最简单数组去重法</span><br><span class="line">    function unique1(array)&#123;</span><br><span class="line">        var n &#x3D; []; &#x2F;&#x2F;一个新的临时数组</span><br><span class="line">        for(var i &#x3D; 0; i &lt; array.length; i++)&#123; &#x2F;&#x2F;遍历当前数组</span><br><span class="line">            if (n.indexOf(array[i]) &#x3D;&#x3D; -1)</span><br><span class="line">                n.push(array[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        return n;</span><br><span class="line">    &#125;</span><br><span class="line">    arr&#x3D;unique1(arr);</span><br><span class="line">    &#x2F;&#x2F; 速度最快， 占空间最多（空间换时间）</span><br><span class="line">    function unique2(array)&#123;</span><br><span class="line">        var n &#x3D; &#123;&#125;, r &#x3D; [], type;</span><br><span class="line">        for (var i &#x3D; 0; i &lt; array.length; i++) &#123;</span><br><span class="line">            type &#x3D; typeof array[i];</span><br><span class="line">            if (!n[array[i]]) &#123;</span><br><span class="line">                n[array[i]] &#x3D; [type];</span><br><span class="line">                r.push(array[i]);</span><br><span class="line">            &#125; else if (n[array[i]].indexOf(type) &lt; 0) &#123;</span><br><span class="line">                n[array[i]].push(type);</span><br><span class="line">                r.push(array[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return r;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;数组下标判断法</span><br><span class="line">    function unique3(array)&#123;</span><br><span class="line">        var n &#x3D; [array[0]]; &#x2F;&#x2F;结果数组</span><br><span class="line">        for(var i &#x3D; 1; i &lt; array.length; i++) &#123; &#x2F;&#x2F;从第二项开始遍历</span><br><span class="line">            if (array.indexOf(array[i]) &#x3D;&#x3D; i) </span><br><span class="line">                n.push(array[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        return n;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>es6方法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">arr&#x3D;[...new Set(arr)];</span><br><span class="line">es6方法数组去重，第二种方法</span><br><span class="line">function dedupe(array) &#123;</span><br><span class="line">  return Array.from(new Set(array));       &#x2F;&#x2F;Array.from()能把set结构转换为数组</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="export和export-default的区别？"><a href="#export和export-default的区别？" class="headerlink" title="export和export default的区别？"></a>export和export default的区别？</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">export default  xxx</span><br><span class="line">import xxx from &#39;.&#x2F;&#39;</span><br><span class="line"></span><br><span class="line">export xxx</span><br><span class="line">import &#123;xxx&#125; from &#39;.&#x2F;&#39;</span><br></pre></td></tr></table></figure>
+
+<h3 id="说一下闭包？"><a href="#说一下闭包？" class="headerlink" title="说一下闭包？"></a>说一下闭包？</h3><p>闭包的实质是因为函数嵌套而形成的作用域链</p>
+<p>闭包的定义即：函数 <code>A</code> 内部有一个函数 <code>B</code>，函数 <code>B</code> 可以访问到函数 <code>A</code> 中的变量，那么函数 <code>B</code> 就是闭包</p>
+<h3 id="说一下继承的几种方式及优缺点？"><a href="#说一下继承的几种方式及优缺点？" class="headerlink" title="说一下继承的几种方式及优缺点？"></a>说一下继承的几种方式及优缺点？</h3><ol>
+<li>借用构造函数继承，使用call或apply方法，将父对象的构造函数绑定在子对象上</li>
+<li>原型继承，将子对象的prototype指向父对象的一个实例</li>
+<li>组合继承</li>
+</ol>
+<p>原型链继承的缺点</p>
+<ul>
+<li>字面量重写原型会中断关系，使用引用类型的原型，并且子类型还无法给超类型传递参数。</li>
+</ul>
+<p>借用构造函数（类式继承）</p>
+<ul>
+<li>借用构造函数虽然解决了刚才两种问题，但没有原型，则复用无从谈起。</li>
+</ul>
+<p>组合式继承</p>
+<ul>
+<li>组合式继承是比较常用的一种继承方法，其背后的思路是使用原型链实现对原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承。这样，既通过在原型上定义方法实现了函数复用，又保证每个实例都有它自己的属性。</li>
+</ul>
+<h3 id="target、currentTarget的区别？"><a href="#target、currentTarget的区别？" class="headerlink" title="target、currentTarget的区别？"></a>target、currentTarget的区别？</h3><p>currentTarget当前所绑定事件的元素</p>
+<p>target当前被点击的元素</p>
+<h3 id="说一下宏任务和微任务？"><a href="#说一下宏任务和微任务？" class="headerlink" title="说一下宏任务和微任务？"></a>说一下宏任务和微任务？</h3><ol>
+<li>宏任务：当前调用栈中执行的任务称为宏任务。（主代码快，定时器等等）。</li>
+<li>微任务： 当前（此次事件循环中）宏任务执行完，在下一个宏任务开始之前需要执行的任务为微任务。（可以理解为回调事件，promise.then，proness.nextTick等等）。</li>
+<li>宏任务中的事件放在callback queue中，由事件触发线程维护；微任务的事件放在微任务队列中，由js引擎线程维护。</li>
+</ol>
+<h3 id="说一下事件代理？"><a href="#说一下事件代理？" class="headerlink" title="说一下事件代理？"></a>说一下事件代理？</h3><p>事件委托是指将事件绑定到目标元素的父元素上，利用冒泡机制触发该事件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ulEl.addEventListener(&#39;click&#39;, function(e)&#123;</span><br><span class="line">    var target &#x3D; event.target || event.srcElement;</span><br><span class="line">    if(!!target &amp;&amp; target.nodeName.toUpperCase() &#x3D;&#x3D;&#x3D; &quot;LI&quot;)&#123;</span><br><span class="line">        console.log(target.innerHTML);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, false);</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何中断ajax请求？"><a href="#如何中断ajax请求？" class="headerlink" title="如何中断ajax请求？"></a>如何中断ajax请求？</h3><p>一种是设置超时时间让ajax自动断开，另一种是手动停止ajax请求，其核心是调用XML对象的abort方法，ajax.abort()</p>
+<h3 id="页面渲染html的过程？"><a href="#页面渲染html的过程？" class="headerlink" title="页面渲染html的过程？"></a>页面渲染html的过程？</h3><p>浏览器渲染页面的一般过程：</p>
+<p>1.浏览器解析html源码，然后创建一个 DOM树。并行请求 css/image/js在DOM树中，每一个HTML标签都有一个对应的节点，并且每一个文本也都会有一个对应的文本节点。DOM树的根节点就是 documentElement，对应的是html标签。</p>
+<p>2.浏览器解析CSS代码，计算出最终的样式数据。构建CSSOM树。对CSS代码中非法的语法它会直接忽略掉。解析CSS的时候会按照如下顺序来定义优先级：浏览器默认设置 &lt; 用户设置 &lt; 外链样式 &lt; 内联样式 &lt; html中的style。</p>
+<p>3.DOM Tree + CSSOM –&gt; 渲染树（rendering tree）。渲染树和DOM树有点像，但是是有区别的。</p>
+<p>DOM树完全和html标签一一对应，但是渲染树会忽略掉不需要渲染的元素，比如head、display:none的元素等。而且一大段文本中的每一个行在渲染树中都是独立的一个节点。渲染树中的每一个节点都存储有对应的css属性。</p>
+<p>4.一旦渲染树创建好了，浏览器就可以根据渲染树直接把页面绘制到屏幕上。</p>
+<p>以上四个步骤并不是一次性顺序完成的。如果DOM或者CSSOM被修改，以上过程会被重复执行。实际上，CSS和JavaScript往往会多次修改DOM或者CSSOM。</p>
+<h3 id="用js递归的方式写1到100求和？"><a href="#用js递归的方式写1到100求和？" class="headerlink" title="用js递归的方式写1到100求和？"></a>用js递归的方式写1到100求和？</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function add(num1,num2)&#123;</span><br><span class="line">	var num &#x3D; num1+num2;</span><br><span class="line">        if(num2+1&gt;100)&#123;</span><br><span class="line">	 return num;</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">	  return add(num,num2+1)</span><br><span class="line">        &#125;</span><br><span class="line"> &#125;</span><br><span class="line">var sum &#x3D;add(1,2);</span><br></pre></td></tr></table></figure>
+
+<h3 id="说一下标签的用法"><a href="#说一下标签的用法" class="headerlink" title="说一下标签的用法"></a>说一下<label>标签的用法</h3><p>label标签主要是方便鼠标点击使用，扩大可点击的范围，增强用户操作体验</p>
+<h3 id="遍历A节点的父节点下的所有子节点"><a href="#遍历A节点的父节点下的所有子节点" class="headerlink" title="遍历A节点的父节点下的所有子节点"></a>遍历A节点的父节点下的所有子节点</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    var b&#x3D;document.getElementById(&quot;a&quot;).parentNode.children;</span><br><span class="line">    console.log(b)</span><br><span class="line">&lt;&#x2F;script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="清除浮动的几种方式，及原理？"><a href="#清除浮动的几种方式，及原理？" class="headerlink" title="清除浮动的几种方式，及原理？"></a>清除浮动的几种方式，及原理？</h3><blockquote>
+<p>清除浮动简单，但这题要引出的是BFC，BFC也是必考的基础知识点</p>
+</blockquote>
+<ul>
+<li><code>::after / &lt;br&gt; / clear: both</code></li>
+<li>创建父级 <code>BFC</code>(overflow:hidden)</li>
+<li>父级设置高度</li>
+</ul>
+<blockquote>
+<p><em>BFC （</em>块级格式化上下文<em>）</em>，是一个独立的渲染区域，让处于 <code>BFC</code> 内部的元素与外部的元素相互隔离，使内外元素的定位不会相互影响。</p>
+</blockquote>
+<p><em>触发条件:</em></p>
+<ul>
+<li>根元素</li>
+<li><code>position: absolute/fixed</code></li>
+<li><code>display: inline-block / table</code></li>
+<li><code>float</code> 元素</li>
+<li><code>ovevflow !== visible</code></li>
+</ul>
+<h3 id="画一个三角形？"><a href="#画一个三角形？" class="headerlink" title="画一个三角形？"></a>画一个三角形？</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">.a&#123;</span><br><span class="line">            width: 0;</span><br><span class="line">            height: 0;</span><br><span class="line">            border-width: 100px;</span><br><span class="line">            border-style: solid;</span><br><span class="line">            border-color: transparent #0099CC transparent transparent;</span><br><span class="line">            transform: rotate(90deg); &#x2F;*顺时针旋转90°*&#x2F;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">&lt;div class&#x3D;&quot;a&quot;&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="说一下盒模型？"><a href="#说一下盒模型？" class="headerlink" title="说一下盒模型？"></a>说一下盒模型？</h3><blockquote>
+<p>盒模型是css中重要的基础知识，也是必考的基础知识</p>
+</blockquote>
+<p>盒模型的组成，由里向外content,padding,border,margin.</p>
+<p>在IE盒子模型中，width表示content+padding+border这三个部分的宽度</p>
+<p>在标准的盒子模型中，width指content部分的宽度</p>
+<p>box-sizing的使用</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">box-sizing: content-box 是W3C盒子模型</span><br><span class="line">box-sizing: border-box 是IE盒子模型</span><br></pre></td></tr></table></figure>
+
+<p>box-sizing的默认属性是content-box</p>
+<h3 id="画一条0-5px的直线？"><a href="#画一条0-5px的直线？" class="headerlink" title="画一条0.5px的直线？"></a>画一条0.5px的直线？</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">height: 1px;</span><br><span class="line">transform: scale(0.5);</span><br></pre></td></tr></table></figure>
+
+<h3 id="1rem、1em、1vh、1px各自代表的含义？"><a href="#1rem、1em、1vh、1px各自代表的含义？" class="headerlink" title="1rem、1em、1vh、1px各自代表的含义？"></a>1rem、1em、1vh、1px各自代表的含义？</h3><blockquote>
+<p>rem</p>
+</blockquote>
+<p>rem是全部的长度都相对于根元素<html>元素。通常做法是给html元素设置一个字体大小，然后其他元素的长度单位就为rem。</p>
+<blockquote>
+<p>em</p>
+</blockquote>
+<ul>
+<li>子元素字体大小的em是相对于父元素字体大小</li>
+<li>元素的width/height/padding/margin用em的话是相对于该元素的font-size</li>
+</ul>
+<blockquote>
+<p>vw/vh</p>
+</blockquote>
+<p>全称是 Viewport Width 和 Viewport Height，视窗的宽度和高度，相当于 屏幕宽度和高度的 1%，不过，处理宽度的时候%单位更合适，处理高度的 话 vh 单位更好。</p>
+<blockquote>
+<p>px</p>
+</blockquote>
+<p>px像素（Pixel）。相对长度单位。像素px是相对于显示器屏幕分辨率而言的。</p>
+<p>一般电脑的分辨率有{1920*1024}等不同的分辨率</p>
+<p>1920*1024 前者是屏幕宽度总共有1920个像素,后者则是高度为1024个像素</p>
+<h3 id="css水平、垂直居中的写法，请至少写出4种？"><a href="#css水平、垂直居中的写法，请至少写出4种？" class="headerlink" title="css水平、垂直居中的写法，请至少写出4种？"></a>css水平、垂直居中的写法，请至少写出4种？</h3><p><em>水平居中</em></p>
+<ul>
+<li>行内元素: <code>text-align: center</code></li>
+<li>块级元素: <code>margin: 0 auto</code></li>
+<li>position:absolute +left:50%+ transform:translateX(-50%)</li>
+<li><code>display:flex + justify-content: center</code></li>
+</ul>
+<p><em>垂直居中</em></p>
+<ul>
+<li>设置line-height 等于height</li>
+<li>position：absolute +top:50%+ transform:translateY(-50%)</li>
+<li><code>display:flex + align-items: center</code></li>
+<li>display:table+display:table-cell + vertical-align: middle;</li>
+</ul>
+<h3 id="calc-support-media各自的含义及用法？"><a href="#calc-support-media各自的含义及用法？" class="headerlink" title="calc, support, media各自的含义及用法？"></a>calc, support, media各自的含义及用法？</h3><p>@support主要是用于检测浏览器是否支持CSS的某个属性，其实就是条件判断，如果支持某个属性，你可以写一套样式，如果不支持某个属性，你也可以提供另外一套样式作为替补。</p>
+<p>calc() 函数用于动态计算长度值。 calc()函数支持 “+”, “-“, “*”, “/“ 运算；</p>
+<p>@media 查询，你可以针对不同的媒体类型定义不同的样式。</p>
+]]></content>
   </entry>
 </search>
