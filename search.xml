@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>第二篇文章</title>
-    <url>/2020/06/03/%E7%AC%AC%E4%BA%8C%E7%AF%87%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">title: 前端面试（常见）</span><br><span class="line">date: 2020-06-05 14:40:56</span><br><span class="line">tags:</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-请你谈谈Cookie的弊端？"><a href="#1-请你谈谈Cookie的弊端？" class="headerlink" title="1.请你谈谈Cookie的弊端？"></a>1.请你谈谈Cookie的弊端？</h4><p>cookie虽然在持久保存客户端数据提供了方便，分担了服务器存储的负担，但还是有很多局限性的。</p>
+    <title>前端面试常见</title>
+    <url>/2020/06/03/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E5%B8%B8%E8%A7%81/</url>
+    <content><![CDATA[<h4 id="1-请你谈谈Cookie的弊端？"><a href="#1-请你谈谈Cookie的弊端？" class="headerlink" title="1.请你谈谈Cookie的弊端？"></a>1.请你谈谈Cookie的弊端？</h4><p>cookie虽然在持久保存客户端数据提供了方便，分担了服务器存储的负担，但还是有很多局限性的。</p>
 <p>第一：每个特定的域名下最多生成20个cookie</p>
 <p>1.IE6或更低版本最多20个cookie</p>
 <p>2.IE7和之后的版本最后可以有50个cookie。</p>
